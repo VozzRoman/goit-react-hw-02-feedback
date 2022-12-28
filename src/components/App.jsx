@@ -9,7 +9,31 @@ export class App extends Component {
   		good: 0,
   		neutral: 0,
   		bad: 0
-}
+	}
+	
+	onClickGood = () => {
+		this.setState(prevState => {
+			return {
+				good: prevState.good + 1,
+			}
+		})
+	}
+
+	onClickNeutral = () => {
+		this.setState(prevState => {
+			return {
+				neutral: prevState.neutral + 1,
+			}
+		})
+		}
+	
+	onClickBad = () => {
+		this.setState(prevState => {
+			return {
+				bad: prevState.bad + 1,
+			}
+		})
+	}
 
 	render() {
 		return (
@@ -24,9 +48,9 @@ export class App extends Component {
 				<section>
 				<h1>Please Leave feedback</h1>
 			
-				<button>Good</button>
-				<button>Neutral</button>
-				<button>Bad</button>		
+				<button onClick={this.onClickGood}>Good</button>
+				<button onClick={this.onClickNeutral}>Neutral</button>
+				<button onClick={this.onClickBad}>Bad</button>		
 				
 				</section>
 				<section>
