@@ -5,6 +5,10 @@ import { Box } from './Box/Box';
 
 export class App extends Component {
 
+	static defaultValue = {
+		positiveFeedback: 0,
+	}
+
 	state = {
   		good: 0,
   		neutral: 0,
@@ -35,23 +39,27 @@ export class App extends Component {
 		})
 	}
 
-	// countTotalFeedback = () => {
-	// 	const keys = this.state;
-	// 	const total = Object.values(keys)
-	// 	console.log(total);
-	// }
-
-	// countPositiveFeedbackPercentage = () => {
-	// 	console.log('43%')
-	// } 
-
-	render() {
+	countTotalFeedback = () => {
 		// const keys = this.state;
 		// const value = Object.values(keys)
 		// const total = value.reduce((acc, number) => {
 		// 	return acc + number;
 		// }, 0)
 		const total = this.state.good + this.state.neutral + this.state.bad;
+		return total;
+	}
+
+	countPositiveFeedbackPercentage = () => {
+		const roundFeedback = this.state.good / this.countTotalFeedback() * 100;
+		let precentageFeedback = Math.round(roundFeedback);
+		return precentageFeedback;
+	} 
+
+	render() {
+	
+		
+		const completedFeedbackCount = this.countTotalFeedback();
+		const completedPositiveFeedback = this.countPositiveFeedbackPercentage(); 
 		return (
 			<>
 				<Box maxWidth="1140px" m="0 auto" background="orange" p="20px">
@@ -68,8 +76,8 @@ export class App extends Component {
 						<p>Good:<span>{this.state.good}</span></p>
 						<p>Neutral:<span>{this.state.neutral}</span></p>
 						<p>Bad:<span>{this.state.bad}</span></p>
-						<p>Total:<span>{total}</span></p>
-						{/* <p>Positive feedback:<span>{this.countTotalFeedback()}</span></p> */}
+						<p>Total:<span>{completedFeedbackCount}</span></p>
+						<p>Positive feedback:<span>{isNaN(completedPositiveFeedback) ? 0 : completedPositiveFeedback }%</span></p>
 				</section>
 				</Box>
 	
