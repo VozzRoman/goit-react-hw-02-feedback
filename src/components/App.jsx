@@ -39,7 +39,11 @@ export class App extends Component {
 	// 		}
 	// 	})
 	// }
-
+	clickButton = option => {
+		this.setState({
+			[option]: this.state[option] + 1
+		})
+	}
 
 	countTotalFeedback = () => {
 		// const keys = this.state;
@@ -61,13 +65,18 @@ export class App extends Component {
 	
 		
 		const completedFeedbackCount = this.countTotalFeedback();
-		const completedPositiveFeedback = this.countPositiveFeedbackPercentage(); 
+		const completedPositiveFeedback = this.countPositiveFeedbackPercentage();
+		
 		return (
+			
 			<>
 				<Box maxWidth="1140px" m="0 auto" background="orange" p="20px">
 			
 					<Section title="Please leave feedback">
-						<FeedbackOptions options={['good', 'neutral', 'bad']} />
+						<FeedbackOptions
+							options={['good', 'neutral', 'bad']}
+							onLeaveFeedback={this.clickButton}
+						/>
 					{/* <button onClick={this.onClickGood}>Good</button>
 					<button onClick={this.onClickNeutral}>Neutral</button>
 					<button onClick={this.onClickBad}>Bad</button>	 */}
