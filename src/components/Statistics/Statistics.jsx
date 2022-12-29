@@ -1,4 +1,4 @@
-import React from "react";
+
 
 export const Statistics = ({good, neutral, bad, total, positivePercentage}) => (
  

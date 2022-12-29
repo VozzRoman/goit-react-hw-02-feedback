@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import  {Statistics} from './Statistics/Statistics';
+import { Statistics } from './Statistics/Statistics';
 import { Box } from './Box/Box';
+import { Section } from './Section/Section';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 
 
 
@@ -14,29 +16,30 @@ export class App extends Component {
   		bad: 0
 	}
 	
-	onClickGood = () => {
-		this.setState(prevState => {
-			return {
-				good: prevState.good + 1,
-			}
-		})
-	}
+	// onClickGood = () => {
+	// 	this.setState(prevState => {
+	// 		return {
+	// 			good: prevState.good + 1,
+	// 		}
+	// 	})
+	// }
 
-	onClickNeutral = () => {
-		this.setState(prevState => {
-			return {
-				neutral: prevState.neutral + 1,
-			}
-		})
-		}
+	// onClickNeutral = () => {
+	// 	this.setState(prevState => {
+	// 		return {
+	// 			neutral: prevState.neutral + 1,
+	// 		}
+	// 	})
+	// 	}
 	
-	onClickBad = () => {
-		this.setState(prevState => {
-			return {
-				bad: prevState.bad + 1,
-			}
-		})
-	}
+	// onClickBad = () => {
+	// 	this.setState(prevState => {
+	// 		return {
+	// 			bad: prevState.bad + 1,
+	// 		}
+	// 	})
+	// }
+
 
 	countTotalFeedback = () => {
 		// const keys = this.state;
@@ -62,23 +65,29 @@ export class App extends Component {
 		return (
 			<>
 				<Box maxWidth="1140px" m="0 auto" background="orange" p="20px">
-				<section>
-				<h1>Please Leave feedback</h1>
+			
+					<Section title="Please leave feedback">
+						<FeedbackOptions options={['good', 'neutral', 'bad']} />
+					{/* <button onClick={this.onClickGood}>Good</button>
+					<button onClick={this.onClickNeutral}>Neutral</button>
+					<button onClick={this.onClickBad}>Bad</button>	 */}
+				</Section>
 				
-				<button onClick={this.onClickGood}>Good</button>
-				<button onClick={this.onClickNeutral}>Neutral</button>
-				<button onClick={this.onClickBad}>Bad</button>			
+				<Section title="Statistic">
+						<Statistics
+							good={this.state.good}
+							neutral={this.state.neutral}
+							bad={this.state.bad}
+							total={completedFeedbackCount}
+							positivePercentage={isNaN(completedPositiveFeedback) ? 0 : completedPositiveFeedback} />
+				</Section>
+					
 				
-				</section>
-				<section>
-						<h2>Statistics</h2>
-						<Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={completedFeedbackCount} positivePercentage={isNaN(completedPositiveFeedback) ? 0 : completedPositiveFeedback }/>
-						{/* <p>Good:<span>{this.state.good}</span></p>
-						<p>Neutral:<span>{this.state.neutral}</span></p>
-						<p>Bad:<span>{this.state.bad}</span></p>
-						<p>Total:<span>{completedFeedbackCount}</span></p>
-						<p>Positive feedback:<span>{isNaN(completedPositiveFeedback) ? 0 : completedPositiveFeedback }%</span></p> */}
-				</section>
+			
+	
+						
+						
+						
 				</Box>
 	
 			
