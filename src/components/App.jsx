@@ -3,6 +3,7 @@ import { Statistics } from './Statistics/Statistics';
 import { Box } from './Box/Box';
 import { Section } from './Section/Section';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Notification } from './Notification/Notification';
 
 
 
@@ -62,8 +63,6 @@ export class App extends Component {
 	} 
 
 	render() {
-	
-		
 		const completedFeedbackCount = this.countTotalFeedback();
 		const completedPositiveFeedback = this.countPositiveFeedbackPercentage();
 		
@@ -77,18 +76,18 @@ export class App extends Component {
 							options={['good', 'neutral', 'bad']}
 							onLeaveFeedback={this.clickButton}
 						/>
-					{/* <button onClick={this.onClickGood}>Good</button>
-					<button onClick={this.onClickNeutral}>Neutral</button>
-					<button onClick={this.onClickBad}>Bad</button>	 */}
 				</Section>
 				
-				<Section title="Statistic">
+					<Section title="Statistic">
+						{completedFeedbackCount === 0 ? <Notification title="There is no feedback" /> :
 						<Statistics
 							good={this.state.good}
 							neutral={this.state.neutral}
 							bad={this.state.bad}
 							total={completedFeedbackCount}
 							positivePercentage={isNaN(completedPositiveFeedback) ? 0 : completedPositiveFeedback} />
+						
+						}
 				</Section>
 					
 				
