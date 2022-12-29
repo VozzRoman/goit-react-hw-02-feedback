@@ -1,4 +1,5 @@
+import { NotifStyle } from "./NotificStyle";
 
 export const Notification = ({title}) => (
-	<p>{title}</p>
+	<NotifStyle>{title}</NotifStyle>
 )

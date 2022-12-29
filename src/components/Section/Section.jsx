@@ -1,11 +1,12 @@
+import { SectionTitle } from "./SectionStyle";
 
 
 export const Section = ({children, title}) => (
 	<>
-		<h2>
+		<SectionTitle>
 			{title}
 			{children}
-		</h2>
+		</SectionTitle>
 	
 	</>
 )

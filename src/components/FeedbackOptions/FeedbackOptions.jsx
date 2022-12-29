@@ -1,19 +1,23 @@
 
 import React, { Component } from "react"
+import { ButtonBox, Button } from "./FeedOptStyle"
  
 export class FeedbackOptions extends Component {
-
-	
-
-	render() {
-		
+	render() {	
 		return (
-			this.props.options.map(label => (
-				<button
+			
+			<ButtonBox>
+				
+				{	this.props.options.map(label => (
+					<Button
 					key={label}
 					onClick={() => this.props.onLeaveFeedback(label)}
-				>{label}</button>
-			))
+					>{label}
+					</Button>
+		))}
+			</ButtonBox>
+	
+		
 		)
 	}
 } 
